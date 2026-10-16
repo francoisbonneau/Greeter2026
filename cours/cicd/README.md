@@ -70,6 +70,7 @@ A l'etape 7, la machine choisit la version : tout revient dans `ci.yml` et `cd.y
    ```
 4. Ouvrez une Pull Request vers `master`.
 
+
 **A observer :** la croix rouge, le message `FAILED: got "Helo World!", expected "Hello World!"`
 dans les logs de `ctest`, et le bouton *Merge* bloque.
 Corrigez, poussez a nouveau : la PR redevient verte.
