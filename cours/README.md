@@ -7,6 +7,7 @@ et publie automatiquement (Release + image) a chaque version.
 Le projet est construit **petit a petit** : chaque seance ajoute une couche,
 et le projet compile a la fin de chaque seance.
 
+
 | Seance | Theme | Ce qui est ajoute au projet | Support |
 |---|---|---|---|
 | 1 (3 h) | Git, GitHub, compiler a la main | depot GitHub, `greet.cpp` compile avec `g++`, messages de commit `feat:` / `fix:` | |
