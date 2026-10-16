@@ -2,7 +2,7 @@
 
 namespace greeter
 {
-    std::string get_message(const std::string& name)
+    std::string get_message( const std::string& name )
     {
         return "Hello " + name + "!";
     }

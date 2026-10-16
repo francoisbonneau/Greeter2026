@@ -17,7 +17,5 @@ int main()
     errors += check_equal(
         greeter::get_build_info().substr( 0, start.size() ), start );
 
-    std::cout << " Test build info " << errors << std::endl;
-
     return errors;
 }

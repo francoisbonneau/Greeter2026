@@ -1,6 +1,4 @@
-#add the executable target named greet
+# Executable greet, built from greet.cpp and using the library greeter
 add_executable(greet greet.cpp)
-
-# add binary tree to the list of paths to search includes
-target_include_directories(greet PUBLIC "${PROJECT_BINARY_DIR}")
+target_link_libraries(greet PRIVATE greeter)
 install(TARGETS greet DESTINATION bin)

@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 3.16)
 
-# set the project name
-project(Greeter)
+# Project name. No version here: it is computed by semantic-release from the
+# commit messages, and given to CPack by the CI (-DCPACK_PACKAGE_VERSION=...)
+project(Greeter LANGUAGES CXX)
 
+# C++ standard used by all the targets
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Pass information known by CMake (system, compiler...) to the source code:
+# generates greeter_config.h in the build folder
 configure_file(cmake/greeter_config.h.in greeter_config.h)
 
 # Libraries (one folder per library in src/)
@@ -18,7 +25,7 @@ endif()
 
 # Tests
 # Options, to change with: cmake -DGREETER_BUILD_TESTS=OFF ...
-option(GREETER_BUILD_TESTS "Compile apps" ON)
+option(GREETER_BUILD_TESTS "Compile tests" ON)
 if(GREETER_BUILD_TESTS)
     message(STATUS "Configuring Greeter with tests")
     enable_testing()
@@ -44,3 +51,17 @@ install(
     FILES ${PROJECT_BINARY_DIR}/GreeterConfig.cmake
     DESTINATION cmake/
 )
+
+# ---- Packaging: cmake --build build --target package ----
+# The archive version is given on the command line, for example:
+#   cmake -S . -B build -DCPACK_PACKAGE_VERSION=1.2.0
+# Without it, the archive is named Greeter-dev-...: a local build, not a release
+set(CPACK_PACKAGE_VERSION "dev" CACHE STRING "Version written in the archive name")
+if(WIN32)
+    set(CPACK_GENERATOR "ZIP")
+else()
+    set(CPACK_GENERATOR "TGZ")
+endif()
+
+# This must always be last!
+include(CPack)
